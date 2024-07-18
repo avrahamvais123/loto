@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils";
 import React, { useState } from "react";
 
-const InputNumbers = ({ getValue = () => {}, ...props }) => {
+const InputNumbers = ({ isColumns, getValue = () => {}, ...props }) => {
   const [inputValue, setInputValue] = useState("");
   const [numbersArray, setNumbersArray] = useState([]);
 
@@ -15,13 +15,13 @@ const InputNumbers = ({ getValue = () => {}, ...props }) => {
       .replace(/\s+/g, "")
       .split(",")
       .map(Number)
-      .filter((num) => !isNaN(num) && num >= 1 && num <= 6);
+      .filter((num) => !isNaN(num) && num >= (isColumns ? 0 : 1) && num <= 9);
 
     // Remove duplicates
     const uniqueNumbers = [...new Set(numbers)];
 
-    // Update state only if the numbers array length is less than or equal to 6
-    if (uniqueNumbers.length <= 6) {
+    // Update state only if the numbers array length is less than or equal to 9
+    if (uniqueNumbers.length <= (isColumns ? 10 : 9)) {
       setInputValue(value);
       setNumbersArray(uniqueNumbers);
       getValue(uniqueNumbers);
@@ -31,8 +31,8 @@ const InputNumbers = ({ getValue = () => {}, ...props }) => {
   const handleKeyDown = (e) => {
     const key = e.key;
 
-    // Check if key is a number between 1 and 6
-    if (!isNaN(key) && (key < 1 || key > 6)) {
+    // Check if key is a number between 1 and 9
+    if (!isNaN(key) && (key < (isColumns ? 0 : 1) || key > 9)) {
       e.preventDefault();
     }
 
@@ -44,7 +44,7 @@ const InputNumbers = ({ getValue = () => {}, ...props }) => {
     // Check if all possible numbers are already included
     const uniqueNumbers = [...new Set(numbersArray)];
     if (
-      uniqueNumbers.length >= 6 &&
+      uniqueNumbers.length >= (isColumns ? 10 : 9) &&
       e.key !== "Backspace" &&
       e.key !== "Delete"
     ) {
@@ -72,7 +72,9 @@ const InputNumbers = ({ getValue = () => {}, ...props }) => {
           props?.className
         )}
       />
-      <p className="text-xs text-gray-400">יש להכניס מספרים מ-1 עד 6 מופרדים בפסיק</p>
+      <p className="text-xs text-gray-400">{`יש להכניס מספרים מ-${
+        isColumns ? "0" : "1"
+      } עד 9 מופרדים בפסיק`}</p>
     </div>
   );
 };
