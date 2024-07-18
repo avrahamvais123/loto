@@ -25,37 +25,35 @@ export default function Home() {
   };
 
   return (
-    <main className="size-full flex flex-col items-center justify-center gap-2">
+    <main className="size-full p-4 flex flex-col items-center justify-center gap-2">
       <h1 className="text-3xl font-bold">תוכנת לוטו</h1>
 
-      <div className="w-full h-96 border p-4 flex items-center justify-center gap-4 overflow-hidden">
-        <div className="size-full flex flex-col items-center justify-center gap-4">
-          <div className="flex flex-col gap-4 items-center justify-center">
-            <InputNumbers
-              label="מספרים לחישוב הטורים"
-              getValue={(value) =>
-                setValues((prevValues) => ({
-                  ...prevValues,
-                  columns: value,
-                }))
-              }
-            />
-            <InputNumbers
-              label="מספרים לחישוב האלכסונים"
-              getValue={(value) =>
-                setValues((prevValues) => ({ ...prevValues, slants: value }))
-              }
-            />
-            <button
-              className="size-fit w-full p-2 rounded-md bg-blue-700 text-white"
-              onClick={handleSubmit}
-            >
-              בחר את כל המספרים
-            </button>
-          </div>
+      <div className="w-full h-96 max-md:flex-grow border p-4 flex max-md:flex-col items-center justify-center gap-4 overflow-hidden">
+        <div /* INPUTS */ className="size-full flex flex-col items-center justify-center gap-4">
+          <InputNumbers
+            label="מספרים לחישוב הטורים"
+            getValue={(value) =>
+              setValues((prevValues) => ({
+                ...prevValues,
+                columns: value,
+              }))
+            }
+          />
+          <InputNumbers
+            label="מספרים לחישוב האלכסונים"
+            getValue={(value) =>
+              setValues((prevValues) => ({ ...prevValues, slants: value }))
+            }
+          />
+          <button
+            className="size-fit w-full p-2 rounded-md bg-blue-700 text-white"
+            onClick={handleSubmit}
+          >
+            בחר את כל המספרים
+          </button>
         </div>
 
-        <div className="size-full flex flex-col items-center gap-2 overflow-hidden">
+        <div /* RESULTS */ className="size-full flex flex-col items-center gap-2 overflow-hidden">
           <div className="w-full flex justify-center items-center gap-2">
             <Button onClick={() => setCriterion("selectedNumbers")}>
               כל המספרים
