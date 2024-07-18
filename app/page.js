@@ -67,14 +67,14 @@ export default function Home() {
               רק האלכסונים
             </Button>
           </div>
-          <h2>{`מספר התוצאות הוא ${allSelections[category]?.length}`}</h2>
-          <div className="size-full flex flex-col items-center gap-2 overflow-auto">
+          <h2>{`מספר התוצאות הוא ${allSelections[category]?.length || 0}`}</h2>
+          <div dir="ltr" className="size-full flex flex-col items-center gap-2 overflow-auto">
             {allSelections[category]?.map((selection, index) => (
               <div
                 key={index}
                 className="w-full h-fit p-4 flex flex-col items-center justify-center gap-2 rounded-md bg-gray-100 text-gray-800"
               >
-                {selection}
+                {selection.join(" ")}
               </div>
             ))}
           </div>
