@@ -26,7 +26,7 @@ export default function Home() {
           <div /* INPUTS */
             className="size-full flex flex-col items-center justify-center gap-4"
           >
-            <div className="size-full max-w-96 flex flex-col items-center justify-center gap-4">
+            <div className="size-full max-w-96 flex flex-col justify-center gap-4">
               <NumberInput
                 initialValue={0}
                 min={0}
