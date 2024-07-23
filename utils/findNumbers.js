@@ -1,4 +1,6 @@
 export function findNumbers({ diagonals, columns, comboLength = 6 }) {
+  console.log("comboLength: ", comboLength);
+
   function sumOfDigitsEquals(number, value) {
     let sum = Math.floor(number / 10) + (number % 10);
     if (sum > 9) {

@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils";
 import React, { useState } from "react";
 
-const InputNumbers = ({ isColumns, getValue = () => {}, ...props }) => {
+const CalculateInput = ({ isColumns, getValue = () => {}, ...props }) => {
   const [inputValue, setInputValue] = useState("");
   const [numbersArray, setNumbersArray] = useState([]);
 
@@ -56,7 +56,7 @@ const InputNumbers = ({ isColumns, getValue = () => {}, ...props }) => {
     <div className={cn("w-full flex flex-col", props?.wrapperClassName)}>
       <label
         htmlFor="input-numbers"
-        className={cn("text-gray-600 text-sm", props?.labelClassName)}
+        className={cn("text-gray-400 text-sm", props?.labelClassName)}
       >
         {props?.label}
       </label>
@@ -67,16 +67,19 @@ const InputNumbers = ({ isColumns, getValue = () => {}, ...props }) => {
         value={inputValue}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
+        placeholder={`יש להכניס מספרים מ-${
+          isColumns ? "0" : "1"
+        } עד 9 מופרדים בפסיק`}
         className={cn(
-          "border border-gray-500 py-2 px-4 rounded-md w-full",
+          "border py-2 px-4 rounded-md w-full placeholder:text-sm placeholder:text-gray-300",
           props?.className
         )}
       />
-      <p className="text-xs text-gray-400">{`יש להכניס מספרים מ-${
+      {/* <p className="text-xs text-gray-400">{`יש להכניס מספרים מ-${
         isColumns ? "0" : "1"
-      } עד 9 מופרדים בפסיק`}</p>
+      } עד 9 מופרדים בפסיק`}</p> */}
     </div>
   );
 };
 
-export default InputNumbers;
+export default CalculateInput;

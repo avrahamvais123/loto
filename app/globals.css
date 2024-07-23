@@ -98,13 +98,11 @@
   animation: modal-close 0.3s ease-in forwards;
 }
 
-/* .ripple {
-  animation: ripple-animation 0.6s linear;
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  @apply appearance-none;
 }
 
-@keyframes ripple-animation {
-  to {
-    transform: scale(4);
-    opacity: 0;
-  }
-} */
+input[type="number"] {
+  @apply appearance-none;
+}

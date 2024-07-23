@@ -1,24 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import InputNumbers from "./ui/InputNumbers";
+import CalculateInput from "./ui/CalculateInput";
 import { findNumbers } from "@/utils/findNumbers";
-import axios from "axios";
-import FloatingLabelInput from "./ui/Input";
-import Modal from "./ui/Modal";
-import Form from "./ui/Form";
-import Button from "perfect-button-new";
-import { FaHome } from "react-icons/fa";
+import NumberInput from "./ui/NumberInput";
 
 export default function Home() {
   const [allSelections, setAllSelections] = useState([]);
   const [category, setCaregory] = useState("");
   const [values, setValues] = useState({ columns: [], diagonals: [] });
-  console.log("allSelections: ", allSelections);
 
   const handleSubmit = () => {
-    const { diagonals, columns } = values;
-    const results = findNumbers({ diagonals, columns });
+    const results = findNumbers(values);
     setAllSelections(results);
     setCaregory("combinations");
     console.log("results: ", results);
@@ -34,7 +27,17 @@ export default function Home() {
             className="size-full flex flex-col items-center justify-center gap-4"
           >
             <div className="size-full max-w-96 flex flex-col items-center justify-center gap-4">
-              <InputNumbers
+              <NumberInput
+                initialValue={0}
+                min={0}
+                onChange={(value) => {
+                  setValues((prevValues) => ({
+                    ...prevValues,
+                    comboLength: value,
+                  }));
+                }}
+              />
+              <CalculateInput
                 label="מספרים לחישוב הטורים"
                 isColumns
                 getValue={(value) =>
@@ -44,7 +47,7 @@ export default function Home() {
                   }))
                 }
               />
-              <InputNumbers
+              <CalculateInput
                 label="מספרים לחישוב האלכסונים"
                 getValue={(value) =>
                   setValues((prevValues) => ({
