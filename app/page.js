@@ -24,55 +24,58 @@ export default function Home() {
 
   return (
     <>
-      <Drawer open={openDrawer} setOpen={setOpenDrawer}>
-        <div className="size-full p-4 flex flex-col items-center justify-center gap-2">
-          <div /* INPUTS */
-            className="size-full flex flex-col items-center justify-center gap-4"
-          >
-            <div className="size-full max-w-96 flex flex-col justify-center gap-4">
-              <NumberInput
-                label="מספר הספרות לחישוב"
-                initialValue={0}
-                min={0}
-                onChange={(value) => {
-                  setValues((prevValues) => ({
-                    ...prevValues,
-                    comboLength: value,
-                  }));
-                }}
-              />
-              <NumberInput
-                label="מספר מקסימום"
-                initialValue={36}
-                min={0}
-                onChange={(value) => {
-                  setValues((prevValues) => ({
-                    ...prevValues,
-                    maxNumber: value,
-                  }));
-                }}
-              />
-              <CalculateInput
-                label="מספרים לחישוב הטורים"
-                isColumns
-                getValue={(value) =>
-                  setValues((prevValues) => ({
-                    ...prevValues,
-                    columns: value,
-                  }))
-                }
-              />
-              <CalculateInput
-                label="מספרים לחישוב האלכסונים"
-                getValue={(value) =>
-                  setValues((prevValues) => ({
-                    ...prevValues,
-                    diagonals: value,
-                  }))
-                }
-              />
-            </div>
+      <main className="size-full border-0 border-blue-600 p-4 flex-grow overflow-auto flex flex-col items-center gap-2">
+        <div /* TITLE */
+          className="w-full flex justify-center items-center gap-2"
+        >
+          <h1 className="text-3xl font-bold">תוכנת לוטו</h1>
+        </div>
 
+        <div /* INPUTS */
+          className="size-full border-0 flex flex-col items-center justify-center gap-4"
+        >
+          <div className="size-full max-w-md flex flex-col justify-center items-center gap-4">
+            <NumberInput
+              label="מספר הספרות לחישוב"
+              initialValue={0}
+              min={0}
+              onChange={(value) => {
+                setValues((prevValues) => ({
+                  ...prevValues,
+                  comboLength: value,
+                }));
+              }}
+            />
+            <NumberInput
+              label="מספר מקסימום"
+              initialValue={36}
+              min={0}
+              onChange={(value) => {
+                setValues((prevValues) => ({
+                  ...prevValues,
+                  maxNumber: value,
+                }));
+              }}
+            />
+            <CalculateInput
+              label="מספרים לחישוב הטורים"
+              isColumns
+              getValue={(value) =>
+                setValues((prevValues) => ({
+                  ...prevValues,
+                  columns: value,
+                }))
+              }
+            />
+            <CalculateInput
+              label="מספרים לחישוב האלכסונים"
+              getValue={(value) =>
+                setValues((prevValues) => ({
+                  ...prevValues,
+                  diagonals: value,
+                }))
+              }
+            />
             <button
               className="size-fit w-full p-2 rounded-md bg-blue-700 text-white"
               onClick={handleSubmit}
@@ -81,40 +84,25 @@ export default function Home() {
             </button>
           </div>
         </div>
-      </Drawer>
-      <main className="size-full p-4 py-16 flex flex-col items-center justify-center gap-2">
-        <div className="w-full flex justify-center items-center gap-2">
-          <IoMdSettings
-            className={cn(
-              "text-2xl text-blue-600",
-              "transition-all cursor-pointer",
-              openDrawer ? "rotate-180" : "rotate-0"
-            )}
-            onClick={() => setOpenDrawer(!openDrawer)}
-          />
-          <h1 className="text-3xl font-bold">תוכנת לוטו</h1>
-        </div>
 
-        <div className="w-full h-96 max-w-md flex-grow max-md:flex-grow border p-4 flex max-md:flex-col items-center justify-center gap-4 overflow-hidden">
-          <div /* RESULTS */
-            className="size-full flex flex-col items-center gap-2 overflow-hidden"
-          >
-            <h2 className="text-xl font-bold">{`מספר התוצאות הוא ${
-              allSelections[category]?.length || 0
-            }`}</h2>
-            <div className="size-full flex flex-col items-center gap-2 overflow-auto">
-              {allSelections[category]?.map((selection, index) => (
-                <div
-                  key={index}
-                  className="w-full h-fit p-4 flex justify-center items-center gap-4 rounded-md border border-gray-200 text-gray-800"
-                >
-                  <p className="text-gray-300">{`${index + 1}.`}</p>
-                  <p className="w-full text-gray-700 text-center">
-                    {selection.join(" ")}
-                  </p>
-                </div>
-              ))}
-            </div>
+        <div /* RESULTS */
+          className="size-full h-fit max-w-md border-0 flex flex-col items-center gap-2"
+        >
+          <h2 className="text-xl font-bold">{`מספר התוצאות הוא ${
+            allSelections[category]?.length || 0
+          }`}</h2>
+          <div className="size-full flex flex-col items-center gap-2">
+            {allSelections[category]?.map((selection, index) => (
+              <div
+                key={index}
+                className="w-full h-fit p-4 flex justify-center items-center gap-4 rounded-md border border-gray-200 text-gray-800"
+              >
+                <p className="text-gray-300">{`${index + 1}.`}</p>
+                <p className="w-full text-gray-700 text-center">
+                  {selection.join(" ")}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </main>

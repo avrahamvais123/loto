@@ -35,7 +35,7 @@ const CloseIcon = () => (
   </>
 );
 
-const Drawer = ({ children, open, setOpen }) => {
+const Drawer = ({ children, open, setOpen, title }) => {
   return (
     <Transition show={open} as={Fragment}>
       <Dialog as="div" className="relative z-50" onClose={setOpen}>
@@ -66,14 +66,14 @@ const Drawer = ({ children, open, setOpen }) => {
               "bg-gray-800 text-white"
             )}
           >
-            <div className="h-full flex flex-col py-6 bg-gray-800 shadow-xl overflow-y-scroll">
+            <div className="h-full flex flex-col py-6 bg-gray-100 shadow-xl overflow-y-scroll">
               <div className="px-4 flex items-center justify-between gap-2 sm:px-6">
-                <DialogTitle className="text-3xl font-bold text-white">
-                  חישובים
+                <DialogTitle className="text-3xl font-bold text-gray-600">
+                  {title}
                 </DialogTitle>
                 <button
                   onClick={() => setOpen(false)}
-                  className="transition-all text-white/15 hover:text-red-600 rounded-md p-1 inline-flex items-center justify-center"
+                  className="transition-all text-gray-600 hover:text-red-600 rounded-md p-1 inline-flex items-center justify-center"
                 >
                   <CloseIcon />
                 </button>
