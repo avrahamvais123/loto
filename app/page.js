@@ -18,7 +18,7 @@ export default function Home() {
     const results = findNumbers(values);
     setAllSelections(results);
     setCaregory("combinations");
-
+    setOpenDrawer(false);
     console.log("results: ", results);
   };
 
@@ -86,7 +86,7 @@ export default function Home() {
         <div className="w-full flex justify-center items-center gap-2">
           <IoMdSettings
             className={cn(
-              "h-[70%] w-auto",
+              "text-2xl text-blue-600",
               "transition-all cursor-pointer",
               openDrawer ? "rotate-180" : "rotate-0"
             )}
