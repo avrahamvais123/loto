@@ -71,7 +71,7 @@ const CalculateInput = ({ isColumns, getValue = () => {}, ...props }) => {
           isColumns ? "0" : "1"
         } עד 9 מופרדים בפסיק`}
         className={cn(
-          "border py-2 px-4 rounded-md w-full placeholder:text-sm placeholder:text-gray-300",
+          "border py-2 px-4 bg-transparent rounded-md w-full placeholder:text-sm placeholder:text-gray-700 outline-none",
           props?.className
         )}
       />

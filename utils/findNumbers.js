@@ -1,6 +1,9 @@
-export function findNumbers({ diagonals, columns, comboLength = 6 }) {
-  console.log("comboLength: ", comboLength);
-
+export function findNumbers({
+  diagonals,
+  columns,
+  comboLength = 6,
+  maxNumber = 36,
+}) {
   function sumOfDigitsEquals(number, value) {
     let sum = Math.floor(number / 10) + (number % 10);
     if (sum > 9) {
@@ -54,7 +57,7 @@ export function findNumbers({ diagonals, columns, comboLength = 6 }) {
 
   diagonals.forEach((diagonal) => {
     const diagonalArray = [];
-    for (let i = 1; i <= 36; i++) {
+    for (let i = 1; i <= maxNumber; i++) {
       if (sumOfDigitsEquals(i, diagonal)) {
         diagonalArray.push(i);
       }
@@ -64,7 +67,7 @@ export function findNumbers({ diagonals, columns, comboLength = 6 }) {
 
   columns.forEach((column) => {
     const columnArray = [];
-    for (let i = 1; i <= 36; i++) {
+    for (let i = 1; i <= maxNumber; i++) {
       if (unitsDigitEquals(i, column)) {
         columnArray.push(i);
       }

@@ -9,6 +9,7 @@ function cn(...inputs) {
 }
 
 const NumberInput = ({
+  label,
   initialValue = 0,
   onChange,
   placeholder,
@@ -45,10 +46,10 @@ const NumberInput = ({
       style={{ maxWidth: maxWidth }}
       className={cn(
         "w-full max-w-48",
-        "flex flex-col justify-center items-center",
+        "flex flex-col justify-center items-center"
       )}
     >
-        <label className="w-full text-sm text-gray-400">מספר הספרות לחישוב</label>
+      <label className="w-full text-sm text-gray-400">{label}</label>
       <div
         className={cn(
           "size-full",
@@ -59,7 +60,7 @@ const NumberInput = ({
         <button
           type="button"
           onClick={increment}
-          className="h-full px-4 py-2 w-auto aspect-square text-xl rounded-r-md hover:bg-gray-100 focus:outline-none"
+          className="h-full px-4 py-2 w-auto aspect-square text-xl rounded-r-md hover:bg-gray-700 focus:outline-none"
         >
           +
         </button>
@@ -68,12 +69,12 @@ const NumberInput = ({
           value={value}
           onChange={handleChange}
           placeholder={placeholder}
-          className="w-full text-xl text-center px-4 border-0 border-x ring-0 outline-0"
+          className="w-full bg-transparent text-xl text-center px-4 border-0 border-x ring-0 outline-0"
         />
         <button
           type="button"
           onClick={decrement}
-          className="h-full w-auto px-4 py-2 aspect-square text-xl rounded-l-md hover:bg-gray-100 focus:outline-none"
+          className="h-full w-auto px-4 py-2 aspect-square text-xl rounded-l-md hover:bg-gray-700 focus:outline-none"
         >
           -
         </button>
