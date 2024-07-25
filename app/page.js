@@ -82,7 +82,7 @@ export default function Home() {
           </div>
         </div>
       </Drawer>
-      <main className="size-full p-4 flex flex-col items-center justify-center gap-2">
+      <main className="size-full p-4 py-16 flex flex-col items-center justify-center gap-2">
         <div className="w-full flex justify-center items-center gap-2">
           <IoMdSettings
             className={cn(
@@ -95,7 +95,7 @@ export default function Home() {
           <h1 className="text-3xl font-bold">תוכנת לוטו</h1>
         </div>
 
-        <div className="w-full h-96 max-md:flex-grow border p-4 flex max-md:flex-col items-center justify-center gap-4 overflow-hidden">
+        <div className="w-full h-96 max-w-md flex-grow max-md:flex-grow border p-4 flex max-md:flex-col items-center justify-center gap-4 overflow-hidden">
           <div /* RESULTS */
             className="size-full flex flex-col items-center gap-2 overflow-hidden"
           >
