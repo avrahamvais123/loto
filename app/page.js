@@ -97,7 +97,7 @@ export default function Home() {
                 key={index}
                 className="w-full h-fit p-4 flex justify-center items-center gap-4 rounded-md border border-gray-200 text-gray-800"
               >
-                <p className="text-gray-300">{`${index + 1}.`}</p>
+                <p className="text-blue-600">{`${index + 1}.`}</p>
                 <p className="w-full text-gray-700 text-center">
                   {selection.join(" ")}
                 </p>
