@@ -7,12 +7,18 @@ import { IoMdSettings } from "react-icons/io";
 import NumberInput from "./ui/NumberInput";
 import Drawer from "./ui/Drawer";
 import { cn } from "@/lib/utils";
+import Button from "./ui/Button";
+import axios from "axios";
+import dayjs from "dayjs";
 
 export default function Home() {
   const [allSelections, setAllSelections] = useState([]);
   const [category, setCaregory] = useState("");
   const [openDrawer, setOpenDrawer] = useState(false);
   const [values, setValues] = useState({ columns: [], diagonals: [] });
+  const [recentResults, setRecentResults] = useState({});
+
+  const date = new Date();
 
   const handleSubmit = () => {
     const results = findNumbers(values);
@@ -22,9 +28,64 @@ export default function Home() {
     console.log("results: ", results);
   };
 
+  const getRecentResults = async () => {
+    try {
+      const res = await axios.get(
+        "https://paisapi.azurewebsites.net/lotto/recent"
+      );
+      console.log("recent results: ", res.data);
+      setRecentResults(res.data);
+    } catch (error) {
+      console.error("error: ", error);
+    }
+  };
+
   return (
     <>
-      <main className="size-full border-0 border-blue-600 p-4 flex-grow overflow-auto flex flex-col items-center gap-2">
+      <main className="relative size-full border-0 border-blue-600 p-4 flex-grow overflow-auto flex flex-col items-center gap-2">
+        <button
+          className="absolute top-4 right-4 text-xl"
+          onClick={() => setOpenDrawer(true)}
+        >
+          <IoMdSettings className="text-slate-400" />
+        </button>
+        <Drawer
+          open={openDrawer}
+          setOpen={setOpenDrawer}
+          onClose={() => setOpenDrawer(false)}
+        >
+          <div className="text-xl text-slate-600 font-bold">אפשרויות</div>
+          <div className="flex flex-col gap-4">
+            <Button onClick={getRecentResults}>
+              הצג תוצאות ההגרלה האחרונה
+            </Button>
+
+            {recentResults?.date && (
+              <div className="size-full flex flex-col justify-center gap-2">
+                <div className="w-full border p-2 px-4">
+                  <h4 className="text-xl text-slate-600">תאריך:</h4>
+                  <h4 className="text-xl text-slate-600 w-full flex items-center gap-4">
+                    {dayjs(recentResults?.date).day()}/
+                    {dayjs(recentResults?.date).month()}/
+                    {dayjs(recentResults?.date).year()}
+                  </h4>
+                </div>
+
+                <div className="w-full border p-2 px-4">
+                  <h4 className="text-xl text-slate-600">המספרים הזוכים:</h4>
+                  {recentResults?.winNumbers?.map((num, i) => {
+                    return (
+                      <span key={i} className="text-xl text-slate-600">
+                        {num}{" "}
+                      </span>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+          </div>
+        </Drawer>
+
         <div /* TITLE */
           className="w-full flex justify-center items-center gap-2"
         >

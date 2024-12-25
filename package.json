@@ -22,6 +22,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
+    "dayjs": "^1.11.13",
     "framer-motion": "^11.3.8",
     "next": "14.2.5",
     "perfect-button-new": "^1.0.7",
