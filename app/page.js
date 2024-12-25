@@ -43,6 +43,7 @@ export default function Home() {
   return (
     <>
       <main className="relative size-full border-0 border-blue-600 p-4 flex-grow overflow-auto flex flex-col items-center gap-2">
+        {/* -------- Drawer -------- */}
         <button
           className="absolute top-4 right-4 text-xl"
           onClick={() => setOpenDrawer(true)}
@@ -85,6 +86,7 @@ export default function Home() {
             )}
           </div>
         </Drawer>
+        {/* -------- End Drawer -------- */}
 
         <div /* TITLE */
           className="w-full flex justify-center items-center gap-2"
